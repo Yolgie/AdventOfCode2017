@@ -26,6 +26,7 @@ class part01Tests(unittest.TestCase):
                         "cntj (57)"]
         self.assertEqual("tknk", self.circus.process(sample_input))
 
+
 class part02Tests(unittest.TestCase):
     circus = Circus()
 

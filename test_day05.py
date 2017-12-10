@@ -13,6 +13,7 @@ class part01Tests(unittest.TestCase):
     def test_sample(self):
         self.assertEqual(self.jumps.process(["0", "3", "0", "1", "-3"]), 5)
 
+
 class part02Tests(unittest.TestCase):
     jumps = Jumps()
 

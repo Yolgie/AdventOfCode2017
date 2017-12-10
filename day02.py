@@ -1,5 +1,3 @@
-import sys
-
 import itertools
 
 
@@ -32,7 +30,7 @@ class Checksum:
     def get_divisors(self, row):
         for a, b in itertools.permutations(row, 2):
             if a % b == 0:
-                return int(a/b)
+                return int(a / b)
 
     def parseInput(self, raw_input):
         result = []

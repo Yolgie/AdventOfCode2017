@@ -2,6 +2,7 @@ import unittest
 
 from day09 import Stream
 
+
 class Tests(unittest.TestCase):
     def test_part_1_count(self):
         testObject = Stream()

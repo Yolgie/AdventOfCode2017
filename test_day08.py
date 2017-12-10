@@ -2,6 +2,7 @@ import unittest
 
 from day08 import Register
 
+
 class Tests(unittest.TestCase):
     def test_part_1(self):
         testObject = Register()

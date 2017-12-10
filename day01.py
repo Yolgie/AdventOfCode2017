@@ -1,6 +1,3 @@
-import sys
-
-
 def get_output_filename(input_filename):
     return input_filename.replace('input', 'output')
 

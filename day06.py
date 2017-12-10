@@ -1,6 +1,3 @@
-import itertools
-
-
 class Memory:
     currentState = []
     history = list()

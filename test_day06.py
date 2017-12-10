@@ -14,17 +14,18 @@ class part01Tests(unittest.TestCase):
         self.assertEqual(self.memories.process(["0 2 7 0"]), 5)
 
     def test_memory(self):
-        memory = Memory([0,2,7,0])
+        memory = Memory([0, 2, 7, 0])
         self.assertFalse(memory.execute())
-        self.assertEqual(memory.currentState, [2,4,1,2])
+        self.assertEqual(memory.currentState, [2, 4, 1, 2])
         self.assertFalse(memory.execute())
-        self.assertEqual(memory.currentState, [3,1,2,3])
+        self.assertEqual(memory.currentState, [3, 1, 2, 3])
         self.assertFalse(memory.execute())
-        self.assertEqual(memory.currentState, [0,2,3,4])
+        self.assertEqual(memory.currentState, [0, 2, 3, 4])
         self.assertFalse(memory.execute())
-        self.assertEqual(memory.currentState, [1,3,4,1])
+        self.assertEqual(memory.currentState, [1, 3, 4, 1])
         self.assertTrue(memory.execute())
-        self.assertEqual(memory.currentState, [2,4,1,2])
+        self.assertEqual(memory.currentState, [2, 4, 1, 2])
+
 
 class part02Tests(unittest.TestCase):
     memories = Memories()
@@ -35,4 +36,3 @@ class part02Tests(unittest.TestCase):
 
     def test_sample(self):
         self.assertEqual(self.memories.process(["0 2 7 0"]), 4)
-

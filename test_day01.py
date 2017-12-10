@@ -1,5 +1,7 @@
 import unittest
+
 from day01 import Captcha
+
 
 class day0101Tests(unittest.TestCase):
     captcha = Captcha()
@@ -20,6 +22,7 @@ class day0101Tests(unittest.TestCase):
 
     def test_wrap_around(self):
         self.assertEqual(self.captcha.process("91212129"), 9)
+
 
 class day0102Tests(unittest.TestCase):
     captcha = Captcha()

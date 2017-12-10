@@ -1,7 +1,6 @@
-import itertools
-import anytree
-from anytree import Node, RenderTree, PreOrderIter, PostOrderIter
 from collections import Counter
+
+from anytree import Node, PostOrderIter
 
 
 class Circus:
@@ -41,10 +40,10 @@ class Circus:
     def makeNode(self, row):
         data = row.split()
         name = data[0]
-        weight = int(data[1].strip('()')) #remove braces
+        weight = int(data[1].strip('()'))  # remove braces
         children = []
         if len(data) > 1:
-            children = [name.strip(',') for name in data[3:]] # remove commas
+            children = [name.strip(',') for name in data[3:]]  # remove commas
         return Node(name, weight=weight, childrenNames=children)
 
     def executeTestOnFile(self, input_filename):

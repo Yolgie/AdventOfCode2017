@@ -16,8 +16,8 @@ class Grid:
         self.grid[(x, y)] = value
 
     def calculatePosition(self, x, y):
-        if (x,y) in self.grid:
-            return self.grid[(x,y)]
+        if (x, y) in self.grid:
+            return self.grid[(x, y)]
         sumOfNeighbors = 0
         neighbors = itertools.product([x - 1, x, x + 1], [y - 1, y, y + 1])
         for coordinate in neighbors:

@@ -1,7 +1,3 @@
-import itertools
-
-import math
-
 class Jumps:
     day = 5
     test = 2

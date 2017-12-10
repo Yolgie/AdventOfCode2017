@@ -16,6 +16,7 @@ class part01Tests(unittest.TestCase):
         self.assertEqual(self.spiralMemory.process(["23"]), 2)
         self.assertEqual(self.spiralMemory.process(["1024"]), 31)
 
+
 class part02(unittest.TestCase):
     spiralMemory = SpiralMemory()
 
@@ -38,12 +39,12 @@ class part02(unittest.TestCase):
         self.assertEqual(grid.calculateNext(), 57)
 
     def test_calculate_spiral_position(self):
-        self.assertEqual(calculateSpiralPosition(1), (0,0))
-        self.assertEqual(calculateSpiralPosition(2), (1,0))
-        self.assertEqual(calculateSpiralPosition(3), (1,1))
-        self.assertEqual(calculateSpiralPosition(4), (0,1))
-        self.assertEqual(calculateSpiralPosition(5), (-1,1))
-        self.assertEqual(calculateSpiralPosition(6), (-1,0))
+        self.assertEqual(calculateSpiralPosition(1), (0, 0))
+        self.assertEqual(calculateSpiralPosition(2), (1, 0))
+        self.assertEqual(calculateSpiralPosition(3), (1, 1))
+        self.assertEqual(calculateSpiralPosition(4), (0, 1))
+        self.assertEqual(calculateSpiralPosition(5), (-1, 1))
+        self.assertEqual(calculateSpiralPosition(6), (-1, 0))
 
     def test_first_greater(self):
         self.assertEqual(self.spiralMemory.process(["0"]), 1)

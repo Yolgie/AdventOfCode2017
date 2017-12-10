@@ -1,8 +1,3 @@
-import itertools
-
-import math
-
-
 class Passphrases:
     day = 4
     test = 2
@@ -13,7 +8,6 @@ class Passphrases:
         result = len(validPasshrases)
         return result
 
-
     def filterValidPassphrases(self, passphrases):
         return [passphrase for passphrase in passphrases if self.isValidPassphrase(passphrase)]
 
@@ -22,7 +16,6 @@ class Passphrases:
             return len(passphrase) == len(set(passphrase))
         if self.test == 2:
             return len(passphrase) == len(set([''.join(sorted(password)) for password in passphrase]))
-
 
     def parseInput(self, raw_input):
         return [row.split() for row in raw_input]

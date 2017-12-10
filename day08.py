@@ -1,9 +1,3 @@
-import itertools
-import anytree
-from anytree import Node, RenderTree, PreOrderIter, PostOrderIter
-from collections import Counter
-
-
 class RegisterCommands:
     comparators = {
         '==': lambda a, b: a == b,
@@ -13,7 +7,6 @@ class RegisterCommands:
         '<': lambda a, b: a < b,
         '>': lambda a, b: a > b
     }
-
 
     def __init__(self, raw_input) -> None:
         super().__init__()
@@ -36,6 +29,7 @@ class RegisterCommands:
         if (condition_lambda(*condition_values)):
             registers[self.target] = registers.get(self.target) + self.amount
             return registers[self.target]
+
 
 class Register:
     day = 8
