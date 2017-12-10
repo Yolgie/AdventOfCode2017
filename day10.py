@@ -1,77 +1,53 @@
-import itertools
-import anytree
-from anytree import Node, RenderTree, PreOrderIter, PostOrderIter, LevelOrderIter
-from collections import Counter
+from functools import reduce
+from itertools import cycle, islice
 
 
-class Stream:
-    day = 9
-    test = 1
+class Hash:
+    day = 10
+    test = 2
+    list_size = 256
 
     def process(self, raw_input):
-        raw_row = self.parseInput(raw_input)
-        escaped_input = self.escapeInput(raw_row)
-        root = self.buildTree(escaped_input)
-        score = 0
-        count = 0
-        garbage_count = 0
-        for node in LevelOrderIter(root):
-            if node.garbage:
-                garbage_count += len(node.garbage_content)
-            else:
-                count+=1
-                if node.parent:
-                    node.score = node.parent.score + 1
-                else:
-                    node.score = 1
-                score += node.score
-        return {'count': count, 'score': score, 'garbage': garbage_count}
+        lenghts = self.parseInput(raw_input)
+        problem = list(range(self.list_size))
+        if self.test == 1:
+            rounds = 1
+        else:
+            rounds = 64
+        skip_size = 0
+        pos = 0
+        for _ in range(rounds):
+            for lenght in lenghts:
+                part = list(islice(cycle(problem), pos, pos + lenght))[::-1]
+                self.listReplace(problem, part, pos)
+                pos = (pos + lenght + skip_size) % self.list_size
+                skip_size += 1
+                print(problem)
 
+        if self.test == 1:
+            return problem[0] * problem[1]
+        else:
+            chunk_size = 16
+            dense_hash_groups = [problem[i:i + chunk_size] for i in range(0, len(problem), chunk_size)]
+            dense_hash = [reduce(lambda x, y: x ^ y, hash_group) for hash_group in dense_hash_groups]
+            hex_hash = ["%02X" % val for val in dense_hash]
+            return ''.join(hex_hash)
+
+    def listReplace(self, original, new, start):
+        if len(new) + start > len(original):
+            new_size = len(original) - start
+            original[start:] = new[:new_size]
+            return self.listReplace(original, new[new_size:], 0)
+        original[start:start + len(new)] = new
+        return original
 
     def parseInput(self, raw_input):
-        return [row for row in raw_input][0]
-
-    def escapeInput(self, raw_row):
-        result = []
-        escape = False
-        for character in raw_row:
-            if escape:
-                escape = False
-                continue
-            if character == '!':
-                escape = True
-                continue
-            result.append(character)
-        return result
-
-    def buildTree(self, escaped_input):
-        level = 0
-        count = 0
-        return self.buildNode(escaped_input, None, level, count)
-
-    def buildNode(self, input, parent, level, count):
-        node = Node((level, count))
-        node.garbage = input.pop(0) == '<'
-        node.garbage_content = []
-        if parent:
-            node.parent = parent
-        child_count = 0
-        while len(input) > 0:
-            next = input[0]
-            if (node.garbage and next == '>') or (not node.garbage and next == '}'):
-                input.pop(0)
-                count += 1
-                if len(input) > 0 and input[0] == ',':
-                    input.pop(0)
-                    sister = self.buildNode(input, parent, level, count)
-                return node
-            elif node.garbage:
-                node.garbage_content.append(input.pop(0))
-            elif next in ['<', '{']:
-                child = self.buildNode(input, node, level+1, child_count)
-                child_count += 1
-            else:
-                raise ValueError("I dont know what to do with: " + next)
+        if self.test == 1:
+            return [[int(value) for value in row.split(',')] for row in raw_input][0]
+        if self.test == 2:
+            parsed_input = [[ord(value) for value in row] for row in raw_input][0]
+            parsed_input.extend([17, 31, 73, 47, 23])
+            return parsed_input
 
     def executeTestOnFile(self, input_filename):
         with open(input_filename) as input_file:
@@ -91,5 +67,5 @@ class Stream:
 
 
 if __name__ == "__main__":
-    exercise = Stream()
+    exercise = Hash()
     exercise.executeTestOnFile(exercise.get_input_filename())
