@@ -22,7 +22,7 @@ class Hash:
                 self.listReplace(problem, part, pos)
                 pos = (pos + lenght + skip_size) % self.list_size
                 skip_size += 1
-                print(problem)
+                # print(problem)
 
         if self.test == 1:
             return problem[0] * problem[1]
@@ -31,7 +31,7 @@ class Hash:
             dense_hash_groups = [problem[i:i + chunk_size] for i in range(0, len(problem), chunk_size)]
             dense_hash = [reduce(lambda x, y: x ^ y, hash_group) for hash_group in dense_hash_groups]
             hex_hash = ["%02X" % val for val in dense_hash]
-            return ''.join(hex_hash)
+            return {'hexHash': ''.join(hex_hash), 'denseHash': dense_hash}
 
     def listReplace(self, original, new, start):
         if len(new) + start > len(original):
