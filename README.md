@@ -1,2 +1,3 @@
-# AdventOfCode2017
-http://adventofcode.com/2017
+# Obsolete
+
+Please go to https://github.com/Yolgie/AdventOfCode
